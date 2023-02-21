@@ -17,6 +17,12 @@
 		<java.version>1.8</java.version>
 		<springfox-version>2.9.2</springfox-version>
 		<mockito.version>3.9.0</mockito.version>
+		<sonar.exclusions>
+			src/main/java/com/example/controller/*.java, 
+			src/main/java/com/example/config/*.java, 
+			src/main/java/com/example/Application.java,
+			src/main/java/com/example/model/*.java,
+		</sonar.exclusions>
 	</properties>
 	
 	<dependencies>

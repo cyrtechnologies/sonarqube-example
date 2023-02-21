@@ -15,15 +15,13 @@ public class ProductService {
 	ProductRepository productRepository;
 
 	public Product showProduct(String id) {
-		if (id == "0" || id == "") {
+		if ("0".equalsIgnoreCase(id) || "".equalsIgnoreCase(id)) {
 			return null;
 		}
-		Product product = productRepository.showProduct(id);
-		return product;
+		return productRepository.showProduct(id);
 	}
 	
 	public List<Product> showAllProducts() {
-		List<Product> products = productRepository.showAllProducts();
-		return products;
+		return productRepository.showAllProducts();
 	}
 }
