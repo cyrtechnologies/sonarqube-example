@@ -24,5 +24,4 @@ public class Product {
 	public void setCompany(String company) {
 		this.company = company;
 	}
-
 }

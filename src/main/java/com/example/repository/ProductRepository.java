@@ -16,21 +16,26 @@ public class ProductRepository {
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 	
-	public Product showProduct(String id) {
-		List<Product> products = new ArrayList<Product>();
-		Product product = null;
-		String sql = "SELECT id, name, company FROM product WHERE id = '"+id+"'";
-		products = jdbcTemplate.query(sql, new ProductRowMapper());
-		if (products.size() > 0) {
-			product = products.get(0);
-		}
-		return product;
+	public int addProduct(Product product) {
+		StringBuilder sqlBuilder = new StringBuilder();
+		sqlBuilder.append("insert into products values ('");
+		sqlBuilder.append(product.getId());
+		sqlBuilder.append("','");
+		sqlBuilder.append(product.getName());
+		sqlBuilder.append("','");
+		sqlBuilder.append(product.getCompany());
+		sqlBuilder.append("');");
+		
+		return jdbcTemplate.update(sqlBuilder.toString());
+	}
+	
+	public List<Product> showProduct(String id) {
+		String sql = "SELECT id, name, company FROM products WHERE id = '"+id+"'";
+		return jdbcTemplate.query(sql, new ProductRowMapper());
 	}
 	
 	public List<Product> showAllProducts() {
-		List<Product> products = new ArrayList<Product>();
-		String sql = "SELECT id, name, company FROM product";
-		products = jdbcTemplate.query(sql, new ProductRowMapper());		
-		return products;
+		String sql = "SELECT id, name, company FROM products";
+		return jdbcTemplate.query(sql, new ProductRowMapper());		
 	}
 }
